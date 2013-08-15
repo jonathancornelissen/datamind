@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{{> dhead }}
+</head>
+<body>
+	<div class="container">
+		<div class="row header">
+    
+		  {{> dpreview }}
+      
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<div id="sidebar-affix" class="affix">
+					<ul class="nav sidebar-nav">
+						<li class="active"><a href="#general">General</a></li>
+						{{# page.slides }}
+						<li><a href="#exercise{{{num}}}">
+              Ex {{{num}}}: {{{title}}}</a>
+            </li>
+						{{/ page.slides }}
+					</ul>
+				</div>
+			</div>
+      
+			<div class="col-lg-9">
+				<div class="general document" id="general">
+					<h1>General information</h1>
+					{{> dmeta }}
+				</div>        
+			        {{{ page.content }}}
+			</div>
+		</div>
+	</div>
+
+  {{> dscripts }}
+
+</body>
+</html>

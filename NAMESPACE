@@ -1,0 +1,6 @@
+export(author_chapter, datamind_login, upload_chapter); 
+
+import(slidify);
+import(RCurl);
+import(httr);
+import(RJSONIO);

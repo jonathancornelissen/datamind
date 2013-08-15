@@ -1,0 +1,15 @@
+Package: datamind 
+Type: Package 
+Title: Easily create interactive courses for DataMind.org with R Markdown 
+Version: 0.1 
+Date: 2013-08-7 
+Author: Jonathan Cornelissen and Ramnath Vaidyanathan 
+Maintainer: Jonathan Cornelissen <Jonathan@datamind.org>
+Description: Easily create interactive courses for DataMind.org with R Markdown. This package is essentially a wrapper around the slidify package.
+License: MIT 
+URL: www.datamind.org 
+Imports:
+  slidify, 
+  RCurl, 
+  httr,
+  RJSONIO

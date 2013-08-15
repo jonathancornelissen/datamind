@@ -1,0 +1,28 @@
+<!-- JavaScript plugins (requires jQuery) -->
+<script src="http://code.jquery.com/jquery.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+<script src="{{page.url.framework}}/js/mathjax.js"></script>
+<script>
+  $(document).ready(function(){
+    var navHeight = 199 - 29;
+    
+    $(document.body).scrollspy({
+      target: '#sidebar-affix',
+      offset: navHeight
+    })
+    
+    var $sideBar = $('#sidebar-affix');
+    
+    $sideBar.affix({
+      offset: {
+        top: function () {
+          return navHeight;
+        }
+        , bottom: function () {
+          return 0;
+        }
+      }
+    });
+  });
+</script>

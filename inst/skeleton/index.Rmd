@@ -1,0 +1,362 @@
+--- 
+courseTitle       : Summer of R
+chapterTitle      : Matrices 
+description       : In this chapter, you'll learn how to work with matrices in R. By the end of the chapter you'll be able to create matrices, and understand how you can do basic computations with them. You'll analyze the box office numbers of Star Wars to illustrate the use of matrices in R. May to force be with you!
+framework : datamind
+mode: selfcontained
+--- 
+
+## What's a matrix?
+
+In R, a matrix is  a collection of elements of the same data type (numeric, character, or logical), that is arranged into a fixed number of rows and columns. Since you are only working with rows and columns, a matrix is called two-dimensional.   
+
+In R, you can construct a matrix with the matrix function, for example:
+`matrix(1:9, byrow=TRUE, nrow=3)`.
+
+The first argument, is the collection of elements that R will arrange into the rows and columns of the matrix.  Here, we use `1:9` which constructs the vector `c(1,2,3,4,5,6,7,8,9)`. 
+
+The argument `byrow` indicates that the matrix is filled by the rows. If we want the vector to be filled by the columns, we just place `bycol=TRUE` or `byrow=FALSE`. 
+
+The third argument `nrow` indicates that the matrix should have three rows.
+
+*** =instructions
+  - Construct a matrix with 3 rows containing the numbers 1 upto 9 in the editor, the click Run and look at the output in the console. Hint, use:
+`matrix(1:9, byrow=TRUE, nrow=3)`
+
+*** =hint
+
+Read the assigment carefully, the answer is already given ;-).
+
+*** =sample_code
+
+```{r}
+# Construction of a matrix with 3 rows containing the numbers 1 upto 9
+```
+
+*** =solution
+
+```{r}
+matrix(1:9, byrow=TRUE, nrow=3);
+```
+
+*** =sct
+
+```{r}
+DM.result <- DM.codeTest("matrix(1:9, byrow=TRUE, nrow=3)");
+```
+
+---
+
+## Analyzing matrices, you shall
+
+It is time to get your hands dirty. In the following exercises you will analyze the box office numbers of the Star Wars franchisee. May the force be with you!
+
+In the editor, three vectors are defined, each representing the box office numbers from the first three Star Wars movies. The first element of each vector indicates the US box office revenue, the second element of each vector refers to the Non-US box office (source: Wikipedia).
+
+*** =instructions
+
+  - Construct a matrix with one row for each movie (thus with 3 rows), a column for the US box office revenue, and a second column for the non-US box office revenue. Name the matrix `star.wars.matrix`.
+  
+*** =hint
+
+Remember that you can construct a matrix containing the numbers 1 upto 9 with: `matrix(1:9, byrow=TRUE, nrow=3)`. In this case, you don't want the number 1 upto 9, but the elements of the 3 star wars movie: this means the input vector is thus: `c(new.hope,empire.strikes,return.jedi)`. 
+
+*** =sample_code
+
+```{r}
+# Box office Star Wars: In Millions (!) 
+# First element: US, Second element: Non-US 
+new.hope <- c( 460.998007, 314.4); 
+empire.strikes <- c(290.475067, 247.900000); 
+return.jedi <- c(309.306177,165.8); 
+
+# Add your code below to construct the matrix
+star.wars.matrix <- 
+
+# Show me the 
+star.wars.matrix 
+```
+
+*** =solution
+
+```{r}
+# Box office Star Wars: In Millions (!) 
+# First element: US, Second element: Non-US 
+new.hope <- c( 460.998007, 314.4); 
+empire.strikes <- c(290.475067, 247.900000);
+return.jedi <- c(309.306177,165.8)
+
+# Add your code below to construct the matrix
+star.wars.matrix <- matrix( c(new.hope,empire.strikes,return.jedi), 
+                            nrow=3, byrow=TRUE) 
+
+# Show me the 
+star.wars.matrix 
+```
+
+## sct
+```{r}
+names    <- "star.wars.matrix"
+values   <- 'matrix( c(new.hope,empire.strikes,return.jedi), 
+                            nrow=3, byrow=TRUE)'
+DM.result   <- DM.closedTest(names,values)
+```
+
+--- 
+
+## Naming a matrix
+
+To help you remember what's stored in star.wars.matrix, you'd like to add the names of the movies for the rows. Not only does this helps you to read the data, it is also useful to select certain elements from the matrix later.
+
+Similar to  vectors, you can add names for the rows and the columns of a matrix with: 
+  - `rownames(my.matrix) <- row.names.vectors`
+  - `colnames(my.matrix) <- col.names.vectors`
+
+*** =instructions
+
+  - Give the columns of <code>star.wars.matrix</code> the names <code>"US"</code> and <code>"non-US"</code>.
+  - Give the rows of the matrix <code>star.wars.matrix</code> the names of the three movies. In case you are not a fan ;-), the movie names are: "A new hope", "The empire strikes back" and "Return of the Jedi".
+
+*** =hint
+
+Don't forget that R is case sensitive. The vector for the column names is thus: <code>c("US","non-US")</code> and for the row names: <code>c("A new hope","The empire strikes back","Return of the Jedi")</code>.
+
+*** =sample_code
+
+```{r} 
+# Box office Star Wars: In Millions (!) 
+# First element: US, Second element: Non-US 
+new.hope <- c( 460.998007, 314.4); 
+empire.strikes <- c(290.475067, 247.900000);
+return.jedi <- c(309.306177,165.8)
+
+# Construct matrix:
+star.wars.matrix <- matrix(c(new.hope,empire.strikes,return.jedi), nrow=3,byrow=TRUE)
+
+# Add your code here such that rows and columns of star.wars have a name!
+
+# Print the matrix to the console:
+star.wars.matrix
+```
+
+*** =solution
+
+```{r}
+# Box office Star Wars: In Millions (!) 
+# First element: US, Second element: Non-US 
+new.hope <- c( 460.998007, 314.4); 
+empire.strikes <- c(290.475067, 247.900000);
+return.jedi <- c(309.306177,165.8)
+
+# Construct matrix:
+star.wars.matrix <- matrix(c(new.hope,empire.strikes,return.jedi), nrow=3,byrow=TRUE)
+
+colnames(star.wars.matrix) <- c("US","non-US")
+rownames(star.wars.matrix) <- c("A new hope","The empire strikes back","Return of the Jedi")
+
+# Print the matrix to the console:
+star.wars.matrix
+```
+
+*** =sct
+
+```{r}
+names  <- c( "star.wars.matrix","colnames(star.wars.matrix)", "rownames(star.wars.matrix)" )
+values <- list( "star.wars.matrix", 'c("US","non-US")', 'c("A new hope", "The empire strikes back", "Return of the Jedi")' )
+DM.result   <- DM.closedTest(names,values,check.existence=c(T,F,F))
+```
+
+--- 
+
+## Calculating the worlwide box office
+
+The single most important thing for a movie to become an instant legend in Tinseltown, is its worldwide box office figures. 
+
+To calculate the total box office recettes for the three Star Wars movies, you have to take the sum of the US revenue column and the non-US revenue column. 
+
+In R, the function <code class="function">rowSums()</code> conveniently calculates the totals for each row of a matrix. This function creates a new vector.
+
+<code>sum.of.rows.vector <-  rowSums(my.matrix)</code>
+
+*** =instructions
+
+  - Calculate the worldwide box office figures for the three movies and put these in the vector named <code>worldwide.vector</code>.
+  
+*** =hint
+
+The <code class="function">rowSums()</code> function will calculate the total box office for each row of the <code>star.wars.matrix</code>, if you supply <code>star.wars.matrix</code> as an argument to that function by putting it between the brackets.
+
+*** =sample_code
+
+```{r} 
+# Box office Star Wars: In Millions (!) 
+# Construct matrix: 
+box.office.all <- c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie.names    <- c("A new hope","The empire strikes back","Return of the Jedi")
+col.titles     <-  c("US","non-US")
+star.wars.matrix      <- matrix(box.office.all, nrow=3, byrow=TRUE,dimnames=list(movie.names,col.titles))
+
+
+worldwide.vector <- #Your code here!
+
+# Show me the
+worldwide.vector
+```
+
+*** =solution
+
+```{r}
+# Box office Star Wars: In Millions (!) 
+# Construct matrix: 
+box.office.all <- c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie.names    <- c("A new hope","The empire strikes back","Return of the Jedi")
+col.titles     <-  c("US","non-US")
+star.wars.matrix      <- matrix(box.office.all, nrow=3, byrow=TRUE,dimnames=list(movie.names,col.titles))
+
+worldwide.vector <- rowSums(star.wars.matrix)
+
+# Show me the
+worldwide.vector
+```
+
+*** =sct
+
+```{r}
+names  <- c("star.wars.matrix","worldwide.vector")
+values <- c("star.wars.matrix","rowSums(star.wars.matrix)")
+DM.result <- DM.closedTest(names,values)
+```
+
+--- 
+
+## Adding a column for the Worlwide box office
+
+In the previous exercise, you calculated the vector that contained the worldwide boxoffice recette for each of the three star wars movies. However, this vector is not yet part of <code>star.wars.matrix</code>...
+
+When you want to add a column or multiple columns to a matrix. A good way to do this is <code class="function">cbind()</code>, which merges matrices and/or vectors together by column. For example:
+
+<code>new.combined.matrix <- cbind( matrix1, matrix2, vector1, ... )</code>
+
+*** =instructions
+
+  - Add <code>worldwide.vector</code> as a new column to the <code>star.wars matrix</code> and assign to <code>new.star.wars.matrix</code>. Use the <code class="function">cbind()</code> function.
+  
+*** =hint
+
+Bind the <code>worldwide.vector</code> to the <code>star.wars.matrix</code> with the <code class="function">cbind()</code> function, with<code> cbind( the.correct.matrix, the.correct.vector)</code> and assign to <code>new.star.wars.matrix</code>.
+
+*** =sample_code
+
+```{r} 
+# Box office Star Wars: In Millions (!) 
+# Construct matrix: 
+box.office.all <- c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie.names <- c("A new hope","The empire strikes back","Return of the Jedi")
+col.titles     <-  c("US","non-US")
+star.wars.matrix      <- matrix(box.office.all, nrow=3, byrow=TRUE,dimnames=list(movie.names,col.titles))
+worldwide.vector <- rowSums(star.wars.matrix)
+
+# Bind the new variabel total.per.movie as a column to star.wars
+new.star.wars.matrix <- 
+
+# Show me the
+new.star.wars.matrix
+```
+
+*** =solution
+
+```{r}
+# Box office Star Wars: In Millions (!) 
+# Construct matrix: 
+box.office.all <- c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie.names    <- c("A new hope","The empire strikes back","Return of the Jedi")
+col.titles     <-  c("US","non-US")
+star.wars.matrix      <- matrix(box.office.all, nrow=3,byrow=TRUE,dimnames=list(movie.names,col.titles))
+
+# Print the matrix to the console:
+worldwide.vector <-  rowSums(star.wars.matrix);
+worldwide.vector # Print worldwide revenue per movie
+
+# Bind the new variabel total.per.movie as a column to star.wars
+new.star.wars.matrix <- cbind( star.wars.matrix, worldwide.vector )
+
+# Show me the:
+new.star.wars.matrix
+```
+
+*** =sct
+
+```{r}
+names  <- c("star.wars.matrix","worldwide.vector","new.star.wars.matrix")
+values <- c("star.wars.matrix","rowSums(star.wars.matrix)","cbind(star.wars.matrix,worldwide.vector)")
+DM.result <- DM.closedTest(names,values)
+```
+
+--- 
+
+## Adding a column for the Worlwide box office
+
+Just like every action has a reaction, every <code class="function">cbind()</code> has a <code class="function">rbind()</code>. (Ok we admit, we are pretty bad with metaphors)
+
+Your R workspace now contains two matrices, the <code>star.wars.matrix</code> we just used (the first trilogy) but also the <code>star.wars.matrix2</code> for the second trilogy. Type the name of the matrices in the console and press enter, in case you want to have a closer look.
+
+*** =instructions
+
+  - Assign to <code>all.wars.matrix</code> a new matrix with <code>star.wars.matrix</code> in the first three rows and <code>star.wars.matrix2</code> in the next three rows.
+    
+*** =hint
+
+Bind the two matrices together in the following way: <code>rbind( matrix1, matrix2 )</code> and assign to <code>all.wars.matrix</code>.
+
+*** =sample_code
+
+```{r} 
+# Box office Star Wars: In Millions (!) 
+star.wars.matrix    # Matrix containing first trilogy box office
+star.wars.matrix2 # Matrix containing second trilogy box office
+
+# Combine the both Star Wars trilogies in one matrix
+all.wars.matrix <- 
+
+# Show me the
+all.wars.matrix
+```
+
+*** =solution
+
+```{r}
+# Box office Star Wars: In Millions (!) 
+star.wars.matrix    # Matrix containing first trilogy box office
+star.wars.matrix2 # Matrix containing second trilogy box office
+
+# Combine the both Star Wars trilogies in one matrix
+all.wars.matrix <- rbind(star.wars.matrix, star.wars.matrix2)
+
+# Show me the
+all.wars.matrix
+```
+
+*** =sct
+
+```{r}
+names  <- c("star.wars.matrix","star.wars.matrix2","all.wars.matrix")
+values  <- c("star.wars.matrix","star.wars.matrix2","rbind(star.wars.matrix,star.wars.matrix2)")
+DM.result  <- DM.closedTest(names,values) 
+```
+
+*** =pre_exercise_code
+
+```{r}
+# Construct matrix: 
+box.office.all <- c(461, 314.4,290.5, 247.9,309.3,165.8)
+movie.names    <- c("A new hope","The empire strikes back","Return of the Jedi")
+col.titles     <-  c("US","non-US")
+star.wars.matrix      <- matrix(box.office.all, nrow=3, byrow=TRUE,  
+                                dimnames=list(movie.names,col.titles))
+
+# Construct matrix2: 
+box.office.all2 <- c( 474.5, 552.5, 310.7, 338.7, 380.3, 468.5 )
+movie.names2    <- c( "The Phantom Menace", "Attack of the Clones", "Revenge of the Sith")
+star.wars.matrix2 <- matrix(box.office.all2, nrow=3, byrow=TRUE,  
+                                dimnames=list(movie.names2,col.titles))
+``` 
