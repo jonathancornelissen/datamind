@@ -12,4 +12,5 @@ Imports:
   slidify, 
   RCurl, 
   httr,
-  RJSONIO
+  RJSONIO,
+  XML

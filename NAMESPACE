@@ -1,4 +1,4 @@
-export(author_chapter, datamind_login, upload_chapter); 
+export(author_chapter, preview_chapter, datamind_login, upload_chapter); 
 
 import(slidify);
 import(RCurl);

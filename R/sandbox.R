@@ -51,7 +51,7 @@ upload_json = function(theJSON){
   auth_token = .DATAMIND_ENV$auth_token;    
   url = paste0(base_url,"?auth_token=", auth_token);
     
-  x = POST(url=url, body = theJSON, add_headers("Content-Type" = "application/json"))   
+  x = httr:::POST(url=url, body = theJSON, add_headers("Content-Type" = "application/json"))   
   course_id = content(x)$id;
   message("Course succesfully uploaded to DataMind.org");
   redirect_url = paste0(redirect_url,course_id);
@@ -79,10 +79,10 @@ render_chapter_json_for_datamind = function(payload){
   for(i in 1:length(slides)){
     slide = slides[[i]]
     exerciseList[[i]] = list(  title         = html2txt(slide$title),
-                               assignment    = slide$content, 
+                               assignment    = clean_up_html(slide$content), 
                                number        = slide$num,
-                               instructions  = slide$instructions$content, 
-                               hint          = slide$hint$content,
+                               instructions  = clean_up_html(slide$instructions$content), 
+                               hint          = clean_up_html(slide$hint$content),
                                sample_code   = extract_code( slide$sample_code$content ),
                                solution      = extract_code( slide$solution$content ),
                                sct           = extract_code( slide$sct$content), 
@@ -97,15 +97,31 @@ render_chapter_json_for_datamind = function(payload){
 }
 
 extract_code = function(html){
-  if(!(is.null(html)|nchar(x)==0)){
+  if(!is.null(html)){
+  if(nchar(html)!=0){
   r = regexpr("<code class=\"r\">(.*?)</code>",html);
   code = regmatches(html,r);
   code = gsub("<code class=\"r\">|</code>","",code)
-  code = html2txt(code)
+  code = html2txt(code);
+
+  # solve bug: when quotes are within quotes, we need different type of quotes! e.g. "c('f','t','w')"
+  code = gsub("[\\]\"","'",as.character(code));
+  
   return(code)
-  }
+  }}
+} 
+
+# Convenience function to convert html codes:
+html2txt <- function(str){
+  str = paste0("<code>",str,"</code>");
+  xpathApply(htmlParse(str, asText=TRUE),"//body//text()", xmlValue)[[1]];
 }
 
+# Remove paragraphs:
+clean_up_html = function(html){
+#   html = gsub("<p>|</p>","",html)
+    return(html)
+}
 
 # FIRST implementation of checks for exercises
 # $checks stores them
@@ -128,14 +144,8 @@ check_exercise_completeness = function(exercise){
   return(exercise)
 }
 
-# Check whether the pre_exercise_code SCT
-check_exercise_sct = function(exercise){
+# Check whether the pre_exercise_code SCT 
+check_exercise_sct = function(exercise){ 
   
   return(exercise)  
-}
-
-# Convenience function to convert html codes
-html2txt <- function(str) {
-  str = paste0("<code>",str,"</code>");
-  xpathApply(htmlParse(str, asText=TRUE),"//body//text()", xmlValue)[[1]];
-}
+} 
