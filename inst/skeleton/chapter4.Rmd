@@ -8,7 +8,13 @@ mode: selfcontained
 
 ## What's a factor and why would you use it?
 
-In this chapter you dive into the wonderful world of **factors**. The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a **limited number of categories**. A continuous variable on the other hand, can correspond to an infinite number of values. It is important that R knows whether it's dealing with a continuous or a categorical variable. This, since the statistical models you will develop in the future threat both in a different way. (You will see later why this is the case) An good example of a categorical variable, is the variable 'Gender'. As you hopefully know by now, a human individual can either be "Male" or "Female". So "Male" and "Female" are here the (only two) values of the categorical variable "Gender", and every observation can be assigned to either the value "Male" of "Female".
+In this chapter you dive into the wonderful world of **factors**. 
+
+The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a **limited number of categories**. A continuous variable on the other hand, can correspond to an infinite number of values. 
+
+It is important that R knows whether it's dealing with a continuous or a categorical variable. This, since the statistical models you will develop in the future threat both in a different way. (You will see later why this is the case).
+
+A good example of a categorical variable, is the variable 'Gender'. As you hopefully know by now, a human individual can either be "Male" or "Female". So "Male" and "Female" are here the (only two) values of the categorical variable "Gender", and every observation can be assigned to either the value "Male" of "Female".
 
 *** =instructions
 
@@ -41,13 +47,13 @@ DM.result <- DM.closedTest("theory","c('R uses factors for categorical variables
 
 ---
 
-## What's a factor and why would you use it?
+## What's a factor and why would you use it? (2)
 
-To create factors in R you make use of the function `factor()` . First thing to do is create a vector that contains all the observations belonging to a limited number of categories. For example, gender vector contains the sex of 5 different individuals. `gender.vector
-    
-    It is clear, that there are 2 categories, or in R-terms**'factor levels'**, here: "Male" and "Female". 
-    
-    The function `factor()` will encode the vector as a factor: `factor.gender.vector` ` 
+To create factors in R you make use of the function `factor()`. First thing to do is create a vector that contains all the observations belonging to a limited number of categories. For example, gender vector contains the sex of 5 different individuals: `gender.vector <- c("Male","Female","Female","Male","Male")`.
+
+It is clear, that there are 2 categories, or in R-terms **'factor levels'**, here: "Male" and "Female". 
+
+The function `factor()` will encode the vector as a factor: `factor.gender.vector <- factor(gender.vector)`. 
 
 *** =instructions
 
@@ -84,12 +90,15 @@ DM.result <- DM.closedTest( "factor.gender.vector", "factor(gender.vector)" )
 
 ```
 
-
 ---
 
-## What's a factor and why would you use it?
+## What's a factor and why would you use it? (3)
 
-There are two types of categorical variabels: a **nominal categorical variable** and an **ordinal categorical variable**. A nominal variable is a categorical variable without an implied order. This means it is impossible to say that 'one is worth more than the other'. Think for example of the categorical variable `hair.color.vector` , with the categories `"Ginger", "Blonde", "Brunette"` and `"Grey"` . Here, it is impossible to say one stands above or below the other. (Note: some of you might disagree ;-) ). In contrast, ordinal variables do have a natural ordering, consider for example the categorical variable `temperature.vector` with the categories: `"Low"` , `"Medium"` and `"High"` . Here it is easy to see that `"Medium"` stand above `"Low"` , and `"High"` stands above `"Medium"` .
+There are two types of categorical variabels: a **nominal categorical variable** and an **ordinal categorical variable**. 
+
+A nominal variable is a categorical variable without an implied order. This means it is impossible to say that 'one is worth more than the other'. Think for example of the categorical variable `hair.color.vector`, with the categories `"Ginger", "Blonde", "Brunette"` and `"Grey"`. Here, it is impossible to say one stands above or below the other. (Note: some of you might disagree ;-) ). 
+
+In contrast, ordinal variables do have a natural ordering, consider for example the categorical variable `temperature.vector` with the categories: `"Low"`, `"Medium"` and `"High"`. Here it is easy to see that `"Medium"` stand above `"Low"`, and `"High"` stands above `"Medium"`.
 
 *** =instructions
 
@@ -130,16 +139,20 @@ DM.result <- TRUE
 
 ## Factor levels
 
-When you first get a dataset, you often see that it contains factors with specific factor levels. However, sometimes you will want to change the names of these levels for clarity or other reasons. R allows you to do this with the function `levels()` . `levels(factor.vector)
+When you first get a dataset, you often see that it contains factors with specific factor levels. However, sometimes you will want to change the names of these levels for clarity or other reasons. R allows you to do this with the function `levels()`:
+
+`levels(factor.vector) <- c("name1","name2",...)`
     
-    A good illustration is the raw data provided to you by a survey. A standard question for every questionnaire is the gender of the respondent. You remember from the previous question this is a factor and when performing the questionnaire on the streets its levels are often coded as `"M"` and `"F"` . `survey.vector
-    
-    Next, when you want to start your data analysis your main concern is to keep a nice overview of all the variables and what they mean. At that point, you will often want to change the factor levels to `"Male"` and `"Female"` instead of `"M"` and `"F"` to make your life easier.` ` 
+A good illustration is the raw data provided to you by a survey. A standard question for every questionnaire is the gender of the respondent. You remember from the previous question this is a factor and when performing the questionnaire on the streets its levels are often coded as `"M"` and `"F"`. 
+
+`survey.vector<- c("M","F","F","M","M")`
+
+Next, when you want to start your data analysis your main concern is to keep a nice overview of all the variables and what they mean. At that point, you will often want to change the factor levels to `"Male"` and `"Female"` instead of `"M"` and `"F"` to make your life easier. 
 
 *** =instructions
 
 1. Convert the character vector `survey.vector` into a factor vector. Assign to `factor.survey.vector`
-2. Change the factor levels of `factor.survey.vector` to `"Male"` and `"Female"` .
+2. Change the factor levels of `factor.survey.vector` to `"Male"` and `"Female"`.
 
 *** =hint
 Mind the order in which you have to type in the factor levels. Hint: look at the order in which the levels are printed).
@@ -182,13 +195,17 @@ DM.result <- DM.closedTest(names,values,check.existence=c(T,T,F))
 
 ## Summarizing a factor
 
-After finishing this course, one of your favourite functions in R will be `summary()` . This will give you a quick overview of `some.variable` : `summary(some.variable)` Going back to our survey, you would like to know how many `"Male"` responses you have in your study, and how many `"Female"` . The `summary()` function gives the answer to this question.
+After finishing this course, one of your favourite functions in R will be `summary()`. This will give you a quick overview of `some.variable`: 
+
+`summary(some.variable)` 
+
+Going back to our survey, you would like to know how many `"Male"` responses you have in your study, and how many `"Female"`. The `summary()` function gives the answer to this question.
 
 *** =instructions
 
-1. Ask a `summary()` of the `survey.vector` and `factor.survey.vector` . Interpret the result for both vectors, are they both equally useful in this case?
+1. Ask a `summary()` of the `survey.vector` and `factor.survey.vector`. Interpret the result for both vectors, are they both equally useful in this case?
 
-The fact that you identified `"Male"` and `"Female"` as factor levels in `factor.survey.vector` , enables R to show the number of elements for each category.
+The fact that you identified `"Male"` and `"Female"` as factor levels in `factor.survey.vector`, enables R to show the number of elements for each category.
 
 *** =hint
 Type this in the console: `summary(survey.vector)` `summary(factor.survey.vector)`
@@ -231,7 +248,10 @@ DM.result <- DM.codeTest(c("summary(survey.vector)","summary(factor.survey.vecto
 
 ## Battle of the sexes
 
-_ "All animals are equal, but some animals are more equal than others"_ --George Orwell In `factor.survey.vector` we have a factor with two levels: male & female. But how does R value these relatively to each other? In other words, who sees R to be worth more, males or females?
+> "All animals are equal, but some animals are more equal than others"
+>--George Orwell 
+
+In `factor.survey.vector` we have a factor with two levels: male & female. But how does R value these relatively to each other? In other words, who sees R to be worth more, males or females?
 
 *** =instructions
 
@@ -279,11 +299,21 @@ DM.result <- list(TRUE,"Phew, it seems that R is gender-neutral. Or maybe just w
 
 ## Ordered factors
 
-Since `"Male"` and `"Female"` are unordered (or nominal) factor levels, R returns a error message. As seen before, for such factors R attaches an equal value to the levels. This is not always the case! Sometimes you will deal with factors that do have a natural ordering between its categories. If this is the case, we have to make sure we pass this information to R... Let's say your leading a research team of 5 data analysts and want to evaluate their performance. To do this, you track their speed, evaluate each analyst as `"Slow"` , `"Fast"` or `"Ultra-Fast"` , and save the results in `speed.vector` .
+Since `"Male"` and `"Female"` are unordered (or nominal) factor levels, R returns a error message. As seen before, for such factors R attaches an equal value to the levels. 
+
+This is not always the case! Sometimes you will deal with factors that do have a natural ordering between its categories. If this is the case, we have to make sure we pass this information to R... 
+
+Let's say your leading a research team of 5 data analysts and want to evaluate their performance. To do this, you track their speed, evaluate each analyst as `"Slow"`, `"Fast"` or `"Ultra-Fast"`, and save the results in `speed.vector`.
 
 *** =instructions
 
-1. As a first step, assign `speed.vector` knowing that: Analyst 1: Fast Analyst 2: Slow Analyst 3: Slow Analyst 4: Fast Analyst 5: Ultra-fast (Just as characters for now)
+1. As a first step, assign `speed.vector` knowing that: 
+ Analyst 1: Fast, 
+ Analyst 2: Slow, 
+ Analyst 3: Slow,  
+ Analyst 4: Fast and  
+ Analyst 5: Ultra-fast, 
+(Just as characters for now)
 
 *** =hint
 Assign to `speed.vector` : `c("Fast","Slow",?`
@@ -315,16 +345,20 @@ DM.result <- DM.closedTest(names,values)
 
 ---
 
-## Ordered factors
+## Ordered factors (2)
 
-`speed.vector` should be converted to an ordinal factor since its categories have a natural ordening. By default, the function `factor()` transforms `speed.vector` into an unordered factor. To create an ordered factor, you have to add two additional arguments: `factor(some.vector,ordered=TRUE,levels=c("Level 1","Level 2"...))` By setting the argument `ordered=TRUE` in the function `factor()` , you indicate the factor is ordered. With the argument `levels` you give the values of the factor in the correct order, e.g. `levels = c("Low","Medium","High")` .
+`speed.vector` should be converted to an ordinal factor since its categories have a natural ordening. By default, the function `factor()` transforms `speed.vector` into an unordered factor. To create an ordered factor, you have to add two additional arguments: 
+
+`factor(some.vector,ordered=TRUE,levels=c("Level 1","Level 2"...))` 
+
+By setting the argument `ordered=TRUE` in the function `factor()`, you indicate the factor is ordered. With the argument `levels` you give the values of the factor in the correct order, e.g. `levels = c("Low","Medium","High")`.
 
 *** =instructions
 
-1. Rewrite the code for `speed.factor.vector` , this time taking into account that there is a specific order for the factor levels.
+1. Rewrite the code for `speed.factor.vector`, this time taking into account that there is a specific order for the factor levels.
 
 *** =hint
-Use the function `factor()` to create `speed.factor.vector` based on `speed.character.vector` . The argument order should be set to TRUE since there is a natural ordering. The factor levels are in this case: `c("Slow","Fast","Ultra-fast")` .
+Use the function `factor()` to create `speed.factor.vector` based on `speed.character.vector`. The argument order should be set to TRUE since there is a natural ordering. The factor levels are in this case: `c("Slow","Fast","Ultra-fast")`.
 
 *** =sample_code
 ```{r eval=FALSE}
@@ -361,11 +395,13 @@ DM.result <- DM.closedTest(names,values)
 
 ## Comparing ordered factors
 
-Having a bad day at work, 'data analyst number two' enters your office and starts complaining that 'data analyst number five' is slowing down the entire project. Since you know 'data analyst number two' has the reputation of being a smarty-pants, you first decide to check if his statement is true. The fact that `speed.factor.vector` is now ordered, enables us to compare different elements (i.e. data analysts in this case). You can simply do this by using the well-known operators.
+Having a bad day at work, 'data analyst number two' enters your office and starts complaining that 'data analyst number five' is slowing down the entire project. Since you know 'data analyst number two' has the reputation of being a smarty-pants, you first decide to check if his statement is true. 
+
+The fact that `speed.factor.vector` is now ordered, enables us to compare different elements (i.e. data analysts in this case). You can simply do this by using the well-known operators.
 
 *** =instructions
 
-1. Check whether data analyst 2 is faster than data analyst 5 and assign the result to `compare.them` . Remember the `>` operator allows to check whether one element is larger than the other.
+1. Check whether data analyst 2 is faster than data analyst 5 and assign the result to `compare.them`. Remember the `>` operator allows to check whether one element is larger than the other.
 
 *** =hint
 You can compare the elements of the vector with the `>` operator. Relevant for this case: `vector[1] > vector[2]` checks whether the first elements of vector is larger than the second element.
@@ -402,4 +438,3 @@ DM.result <- DM.closedTest(names,values)
 ```{r eval=FALSE}
 
 ```
-
