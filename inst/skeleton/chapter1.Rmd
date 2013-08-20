@@ -192,7 +192,7 @@ DM.result <- DM.codeTest( "x <- 42" )
 
 ## Variable assignment (2)
 
-Suppose you have a fruit basket with 5 apples. As a data analyst in training, you want to store the amount of apples in a variable with the name `my.apples` . 
+Suppose you have a fruit basket with 5 apples. As a data analyst in training, you want to store the amount of apples in a variable with the name `my.apples`. 
 
 Remember, if you want to assign a number or object to a variable in R, you can make use of `<-`
 
@@ -238,15 +238,15 @@ DM.result <- DM.closedTest(names,values)
 
 ## Variable assignment (3)
 
-Every tasty fruit basket needs oranges, you decide to add 6 oranges. As a good data analyst your reflex is to immediatly create the variable `my.oranges` and assign the value 6 to it. Next, you want to calculate how many pieces of fruit you have in total. Thanks to your variables, you can now code this in an easy and clear way: `my.apples + my.oranges` .
+Every tasty fruit basket needs oranges, you decide to add 6 oranges. As a good data analyst your reflex is to immediatly create the variable `my.oranges` and assign the value 6 to it. Next, you want to calculate how many pieces of fruit you have in total. Thanks to your variables, you can now code this in an easy and clear way: `my.apples + my.oranges`.
 
 *** =instructions
 
 1. Assign to `my.oranges` the value 6.
-2. R allows you to combine the variables `my.apples` and `my.oranges` into a new variable `my.fruit` . Create this new variable `my.fruit` , which is the total amount of fruits in your fruit basket.
+2. R allows you to combine the variables `my.apples` and `my.oranges` into a new variable `my.fruit`. Create this new variable `my.fruit`, which is the total amount of fruits in your fruit basket.
 
 *** =hint
-`my.fruit` is just the sum of `my.apples` and `my.oranges` . You can use the `+` operator to sum the two and `<-` to assign that value to the variable `my.fruit` .`
+`my.fruit` is just the sum of `my.apples` and `my.oranges`. You can use the `+` operator to sum the two and `<-` to assign that value to the variable `my.fruit`.`
 
 *** =sample_code
 ```{r eval=FALSE}
@@ -287,7 +287,7 @@ DM.result <- DM.closedTest(names,values)
 
 ## Apples and oranges
 
-Common knowledge tells you not to add apples with oranges. But hey, that's what we just did, didn't we :-)? The `my.apples` and `my.oranges` variables both contained a number in the previous exercise. The `+` operator can work with what 's called numeric variables in R. Suppose we really tried to add "apples" and "oranges", and assigned a text value to the variable `my.oranges` . As you can see in the editor on the right. The assigment of the `my.fruit` variable now contains the addition of a numeric and a character variable, which is not possible.
+Common knowledge tells you not to add apples with oranges. But hey, that's what we just did, didn't we :-)? The `my.apples` and `my.oranges` variables both contained a number in the previous exercise. The `+` operator can work with what 's called numeric variables in R. Suppose we really tried to add "apples" and "oranges", and assigned a text value to the variable `my.oranges`. As you can see in the editor on the right. The assigment of the `my.fruit` variable now contains the addition of a numeric and a character variable, which is not possible.
 
 *** =instructions
 
@@ -407,7 +407,7 @@ Remember when you added `5 + "six"` and got an error due to a mismatch in data t
 
 *** =instructions
 
-1. Complete the code in the editor and assign to `datatype1` , `datatype2` and `datatype3` the data type (or object class) of respectively the variables `my.numeric` , `my.character` and `my.logical` .
+1. Complete the code in the editor and assign to `datatype1`, `datatype2` and `datatype3` the data type (or object class) of respectively the variables `my.numeric`, `my.character` and `my.logical`.
 
 *** =hint
 You can find out the data type of the `my.numeric` variable for example by typing: `datatype1 <- class("my.numeric")` What you should do is similar for `my.character` and `my.logical`. 

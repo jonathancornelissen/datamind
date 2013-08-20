@@ -577,7 +577,7 @@ For example, to select the first element of the vector, you type `poker.vector[1
 1. Assign to the variable `poker.wednesday` the poker results of wednesday.
 
 *** =hint
-Wednesday is the third element of `poker.vector` , and can thus be selected with `poker.vector[3]`.
+Wednesday is the third element of `poker.vector`, and can thus be selected with `poker.vector[3]`.
 
 *** =sample_code
 ```{r eval=FALSE}
@@ -686,7 +686,7 @@ DM.result   <- DM.closedTest( names, values )
 
 ## Vector selection: the good times (3)
 
-Selecting multiple elements of poker.midweek with `c(2,3,4)` is repetitive, boring, and not very convenient. But many statisticians are lazy people by nature, so they created an easier way to do this: `c(2,3,4)` can be generated faster by `2:4` , which generates a vector with all natural numbers from 2 upto 4. 
+Selecting multiple elements of poker.midweek with `c(2,3,4)` is repetitive, boring, and not very convenient. But many statisticians are lazy people by nature, so they created an easier way to do this: `c(2,3,4)` can be generated faster by `2:4`, which generates a vector with all natural numbers from 2 upto 4. 
 
 You can thus select the elements of poker.midweek by typing: `poker.vector[2:4]`. Notice how the vector `2:4` is placed between the square brackets to select element 2 upto 4.
 
