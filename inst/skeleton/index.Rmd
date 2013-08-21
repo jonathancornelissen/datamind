@@ -6,14 +6,14 @@ framework : datamind
 mode: selfcontained
 --- 
 
-# START READ AND DELETE 
-  1. Edit YAML front matter above
+# START READ-AND-DELETE 
+  1. Complete YAML front matter above
   2. Write using R Markdown (http://en.wikipedia.org/wiki/Markdown)
   3. Use an empty line followed by three dashes to separate exercises!
   4. Consult the documentation at: http://www.datamind.org/#/CC/help if you're stuck
-# END READ AND DELETE
+# END READ-AND-DELETE
 
-## The title of the exercise
+## The title of the first exercise
 
 In the assignement, you can explain statistical concepts or R functionality. Assignments are written in (R) Markdown.
 
@@ -41,18 +41,32 @@ Hints help the students to find a correct solution for the exercise. Hints are o
 *** =solution
 
 ```{r}
-# The sample code is what is shown in the students editor by default
+# The solution code solves the assignement. Make sure the solution passes the submission correctness test (we will check this;-)!
 ```
 
 *** =sct
 
 ```{r}
-DM.result <- DM.codeTest("matrix(1:9, byrow=TRUE, nrow=3)");
+# The Submission Correctness Test code
+# It takes as input the students workspace, his code and what was printed to the console during the exercise.
+# Based on these inputs the SCT returns:
+# (i) whether the students code was correct
+# (ii) a message to the student to either help him find what was wrong or congragulate him on finding the solution.
+```
+
+*** =pre-exercise-code
+
+```{r}
+# Pre-exercise code is executed before the exercise starts (what's in a name...)
+# It can be used to:
+# Pre-load a dataset
+# Render graphs that are shown at the start of the exercise
+# ...
 ```
 
 ---
 
-## A second exercise starts here everything below is analogous to what's explained above.
+## Title of the second exercise!
 
 Assigment here.
 
@@ -76,7 +90,12 @@ Hint here.
 # Solution code here 
 ```
 
-## sct
+*** =sct
 ```{r}
 # Submission Correctness Test here
+```
+
+*** =pre_exercise_code
+```{r}
+# Pre-exercise code here
 ```

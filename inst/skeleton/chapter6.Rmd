@@ -88,7 +88,7 @@ DM.result <- TRUE
 
 Let's create our first list! To construct a list you use the function `list()`: 
 
-`my.list <- List(component1, component2...)`
+`my.list <- list(component1, component2...)`
 
 The arguments to the list function are the list components. Remember, these components can be a  collection of matrices, vectors...` 
 
