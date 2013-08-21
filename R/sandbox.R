@@ -45,9 +45,9 @@ upload_chapter = function( inputFile, ... ){
 upload_json = function(theJSON){ 
   if(!exists(".DATAMIND_ENV")){
     stop("Please login to DataMind first, using the datamind_login function");    
-  }
-  base_url = "http://staging.api.datamind.org/chapters/create_from_r.json";
-  redirect_url = "http://test.datamind.org/#/edit_course/";
+  } 
+  base_url     = "http://api.datamind.org/chapters/create_from_r.json";
+  redirect_url = "http://www.datamind.org/#/edit_course/";
   auth_token = .DATAMIND_ENV$auth_token;    
   url = paste0(base_url,"?auth_token=", auth_token);
     
