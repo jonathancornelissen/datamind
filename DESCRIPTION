@@ -8,7 +8,7 @@ Maintainer: Jonathan Cornelissen <Jonathan@datamind.org>
 Description: Easily create interactive courses for DataMind.org with R Markdown. This package is essentially a wrapper around the slidify package.
 License: MIT 
 URL: www.datamind.org 
-Imports:
+Depends:
   slidify, 
   RCurl, 
   httr,

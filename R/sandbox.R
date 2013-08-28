@@ -3,8 +3,13 @@
 # Feel free to contribute or just email suggestions at jonathan@datamind.org! 
 
 # 1. Author chapter:
-author_chapter = function(chapdir, ...){
-  author(deckdir=chapdir,  scaffold = system.file('skeleton', package = 'datamind'), ...) 
+author_course = function(chapdir, ...){
+  message(paste0("Creating course directory ",chapdir));
+  message("Finished creating course directory...");
+  message("Switching to course directory...");
+  message("Initializing Git Repo");
+  suppressMessages(author(deckdir=chapdir,  scaffold = system.file('skeleton', package = 'datamind'), ...) );
+  message(paste0("Opening first chapter..."));
 }
 
 # 2. Preview chapter:
