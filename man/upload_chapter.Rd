@@ -11,7 +11,7 @@ upload_chapter(inputFile,...)
 
 \arguments{ 
   \item{inputFile}{ Path to the ".Rmd" file to be uploaded } 
-  \item{password}{ Extra arguments to be passed to the \code{slidify} function under the hood }
+  \item{...}{ Extra arguments to be passed to the \code{slidify} function under the hood }
 } 
 
 \value{The \code{upload_chapter} function does not return a value but it is called for its side effect as described above.}

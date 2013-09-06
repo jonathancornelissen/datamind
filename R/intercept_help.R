@@ -23,7 +23,7 @@ vignette_path <- function(x){
     type <- substitute(e1)
     topicExpr <- substitute(e2)
   }
-
+  
   if(substr(as.character(topicExpr),1,1)[[1]]=="?"){
     stop("The search function is not yet implemented. We will do this soon.") #TODO: DO THIS!
   }
@@ -35,15 +35,14 @@ help <- function (topic, package = NULL, lib.loc = NULL, verbose = getOption("ve
 {
   types <- c("text", "html", "pdf")
   if (!missing(package)) {
-  if (missing(topic)) {
-    if (!missing(package)) {
-      DM.temp.help <<- help_path(package=package,FUN="00index")
-      return()
+    if (missing(topic)) {
+      if (!missing(package)) {
+        DM.temp.help <<- help_path(package=package,FUN="00index")
+        return()
+      }
     }
   }
-  }
-  ischar <- tryCatch(is.character(topic) && length(topic) == 
-                       1L, error = identity)
+  ischar <- tryCatch(is.character(topic) && length(topic) == 1L, error = identity)
   if (inherits(ischar, "error")) 
     ischar <- FALSE
   if (!ischar) {
@@ -61,7 +60,7 @@ help <- function (topic, package = NULL, lib.loc = NULL, verbose = getOption("ve
   if( length(paths) == 0){ 
     DM.temp.help <<- help_path(package="",FUN="")
     stop(paste("No documentation for ‘",topic," ’ in specified packages and libraries: you could try ‘??",topic,"’. (But not yet on DataMind, since that's not implemented yet ;-).",sep=""))    
-    }else{
+  }else{
     splitted.path  <- strsplit(paths,"/")
     L <- length( splitted.path[[1]] )    
     DM.temp.help <<- help_path( package=splitted.path[[1]][L-2], FUN=splitted.path[[1]][L] )
