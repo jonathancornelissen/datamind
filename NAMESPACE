@@ -1,4 +1,14 @@
-export(author_course, preview_chapter, datamind_login, upload_chapter); 
+export(author_course, 
+       preview_chapter, 
+       datamind_login, 
+       upload_chapter, 
+       called_functions, 
+       check_existence, 
+       closed_test,
+       code_test, 
+       get_arguments, 
+       output_contains,
+       student_typed); 
 
 import(slidify);
 import(RCurl);
