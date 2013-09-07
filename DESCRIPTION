@@ -13,4 +13,5 @@ Depends:
   RCurl, 
   httr,
   RJSONIO,
+Suggests: 
   XML
