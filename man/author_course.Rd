@@ -6,7 +6,7 @@ The author_course function will:
 (i) create a folder in you current working directory with the name "courseName", 
 (ii) initialize a Git repo for version control, 
 (iii) copy a demo file "index.Rmd" inside that folder so you can get started, and 
-(iv) open "chapter1.Rmd", a template for creating a chapter, such that you can start writing exercises in the template. Find more information on the (necessary) blocks of an interactive exercise on DataMind below or just read the instructions in the template.
+(iv) open "index.Rmd", a template for creating a chapter, such that you can start writing exercises in the template. Find more information on the (necessary) blocks of an interactive exercise on DataMind below or just read the instructions in the template.
 }
 
 \usage{
