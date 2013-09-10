@@ -15,3 +15,4 @@ import(RCurl);
 import(httr);
 import(RJSONIO);
 import(XML);
+import(yaml);

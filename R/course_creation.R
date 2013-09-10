@@ -39,15 +39,40 @@ datamind_login = function(email, password){
 }
 
 # 4. Upload chapter:
-upload_chapter = function( inputFile, ... ){ 
+upload_chapter = function( inputFile, open=FALSE, ... ){ 
   # not efficient, needs refactoring
   payload = suppressWarnings(slidify(inputFile, return_page=TRUE,...));  # Get the payload  
   theJSON = render_chapter_json_for_datamind(payload); # Get the JSON
-  upload_json(theJSON); # Upload everything
-}
+  upload_chapter_json(theJSON,open=open); # Upload everything
+} 
+
+# 5. OR upload the entire course!
+upload_course = function(open=TRUE){ 
+  chapters = list.files(pattern="*.Rmd") # list all chapters in the directory  
+  if (length(chapters)==0){ stop("There seem to be no chapters (in '.Rmd' format) in the current directory") }
+
+  if (length(chapters) > 1){ 
+    for(i in 1:length(chapters)){ 
+      upload_chapter_within_course(chapters[i]);
+    } 
+  } 
+  
+  if (!file.exists("course.yml")){ # Just upload the last chapter in case no specific course file
+    upload_chapter_within_course(chapters[length(chapters)], open=TRUE); #Upload and open the last chapter
+    message("### Succesfully upload the course ###")
+  }
+  
+  if (file.exists("course.yml")){
+    upload_chapter_within_course(chapters[length(chapters)], open=FALSE); # Upload the last chapter
+    course = yaml.load_file("course.yml");
+    the_course_json = toJSON(course);
+    upload_course_json(the_course_json);
+  }
+  
+} 
 
 ##### HELP FUNCTIONS ##### 
-upload_json = function(theJSON){ 
+upload_chapter_json = function(theJSON, open=TRUE){ 
   if(!exists(".DATAMIND_ENV")){
     stop("Please login to DataMind first, using the datamind_login function");    
   } 
@@ -55,13 +80,29 @@ upload_json = function(theJSON){
   redirect_url = "http://www.datamind.org/#/edit_course/";
   auth_token = .DATAMIND_ENV$auth_token;    
   url = paste0(base_url,"?auth_token=", auth_token);
-    
+  
   x = httr:::POST(url=url, body = theJSON, add_headers("Content-Type" = "application/json"))   
   course_id = content(x)$id;
   message("Course succesfully uploaded to DataMind.org");
   redirect_url = paste0(redirect_url,course_id);
-  browseURL(redirect_url)
-} 
+  if (open){ browseURL(redirect_url) }
+}
+
+upload_course_json = function(theJSON, open=TRUE){ 
+  if(!exists(".DATAMIND_ENV")){
+    stop("Please login to DataMind first, using the datamind_login function");    
+  } 
+  base_url     = "http://api.datamind.org/courses/create_from_r.json";
+  redirect_url = "http://www.datamind.org/#/edit_course/";
+  auth_token = .DATAMIND_ENV$auth_token;    
+  url = paste0(base_url,"?auth_token=", auth_token);
+  
+  x = httr:::POST(url=url, body = theJSON, add_headers("Content-Type" = "application/json"))   
+  course_id = content(x)$id;
+  message("Course succesfully uploaded to DataMind.org");
+  redirect_url = paste0(redirect_url,course_id);
+  if (open){ browseURL(redirect_url) }
+}
 
 render_chapter_json_for_datamind = function(payload){
   if(!exists(".DATAMIND_ENV")){
@@ -126,6 +167,14 @@ html2txt <- function(str){
 clean_up_html = function(html){
 #   html = gsub("<p>|</p>","",html)
     return(html)
+}
+
+upload_chapter_within_course = function(chapter,open=FALSE){ 
+  message(paste("Start uploading chapter: ",chapter),"...");
+  message("...uploading...")    
+  invisible( capture.output( suppressMessages(upload_chapter(chapter,open=open)) ) );
+  message(paste("Succesfully uploaded chapter: ",chapter),"!");
+  message("###"); 
 }
 
 # FIRST implementation of checks for exercises
