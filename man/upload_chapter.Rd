@@ -6,11 +6,12 @@ Before calling this function you should have logged into datamind.org with \code
 } 
 
 \usage{ 
-upload_chapter(inputFile,...)
+upload_chapter(inputFile,open=TRUE,...)
 } 
 
 \arguments{ 
   \item{inputFile}{ Path to the ".Rmd" file to be uploaded } 
+  \item{open}{ Boolean, TRUE by default, determines whether a browser window should open, showing the course creation web interface } 
   \item{...}{ Extra arguments to be passed to the \code{slidify} function under the hood }
 } 
 

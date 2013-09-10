@@ -39,7 +39,7 @@ datamind_login = function(email, password){
 }
 
 # 4. Upload chapter:
-upload_chapter = function( inputFile, open=FALSE, ... ){ 
+upload_chapter = function( inputFile, open=TRUE, ... ){ 
   # not efficient, needs refactoring
   payload = suppressWarnings(slidify(inputFile, return_page=TRUE,...));  # Get the payload  
   theJSON = render_chapter_json_for_datamind(payload); # Get the JSON
