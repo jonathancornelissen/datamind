@@ -9,6 +9,7 @@ Description: This package makes it easy and fun to create interactive courses fo
 License: MIT 
 URL: www.datamind.org 
 Depends:
+  datamindSCT,
   slidify, 
   RCurl, 
   httr,

@@ -2,14 +2,7 @@ export(author_course,
        preview_chapter, 
        datamind_login, 
        upload_chapter,
-       upload_course,
-       called_functions, 
-       check_existence, 
-       closed_test,
-       code_test, 
-       get_arguments, 
-       output_contains,
-       student_typed); 
+       upload_course); 
 
 import(slidify);
 import(RCurl);
