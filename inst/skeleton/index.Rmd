@@ -54,7 +54,7 @@ Hints help the students to find a correct solution for the exercise. Hints are o
 # (ii) a message to the student to either help him find what was wrong or congragulate him on finding the solution.
 ```
 
-*** =pre-exercise-code
+*** =pre_exercise_code
 
 ```{r}
 # Pre-exercise code is executed before the exercise starts (what's in a name...)
