@@ -17,7 +17,7 @@ mode: selfcontained
 
 In the assignement, you can explain statistical concepts or R functionality. Assignments are written in (R) Markdown.
 
-You can emphasize important words by putting them in **bold** or *italics*, or indicate that some parts are `r_code` with backticks. You can even add lists, to structure your explanation: 
+You can emphasize important words by putting them in **bold** or *italics*, or indicate that some parts are `r_code` with backticks, but what's really cool is that you can incorporate LATEX style formula's, e.g. $\frac{E(R_i) - R_f}{\beta_i} = E(R_m) - R_f$ You can even add lists, to structure your explanation: 
 - item one
 - item two
 
@@ -34,19 +34,19 @@ Hints help the students to find a correct solution for the exercise. Hints are o
 
 *** =sample_code
 
-```{r}
+```{r,eval=FALSE}
 # The sample code is what is shown in the students editor by default
 ```
 
 *** =solution
 
-```{r}
+```{r,eval=FALSE}
 # The solution code solves the assignement. Make sure the solution passes the submission correctness test (we will check this;-)!
 ```
 
 *** =sct
 
-```{r}
+```{r,eval=FALSE}
 # The Submission Correctness Test code
 # It takes as input the students workspace, his code and what was printed to the console during the exercise.
 # Based on these inputs the SCT returns:
@@ -56,7 +56,7 @@ Hints help the students to find a correct solution for the exercise. Hints are o
 
 *** =pre_exercise_code
 
-```{r}
+```{r,eval=FALSE}
 # Pre-exercise code is executed before the exercise starts (what's in a name...)
 # It can be used to:
 # Pre-load a dataset
@@ -80,22 +80,22 @@ Hint here.
 
 *** =sample_code
 
-```{r}
+```{r,eval=FALSE}
 # Sample code here
 ```
 
 *** =solution
 
-```{r}
+```{r,eval=FALSE}
 # Solution code here 
 ```
 
 *** =sct
-```{r}
+```{r,eval=FALSE}
 # Submission Correctness Test here
 ```
 
 *** =pre_exercise_code
-```{r}
+```{r,eval=FALSE}
 # Pre-exercise code here
 ```
