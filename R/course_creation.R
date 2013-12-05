@@ -34,7 +34,7 @@ datamind_login = function(email, password){
     .DATAMIND_ENV <<- new.env();
     .DATAMIND_ENV$auth_token <- auth_token;    
     .DATAMIND_ENV$email <- email;    
-    message("Logged in succesfully to DataMind.org!")
+    message("Logged in succesfully to DataMind.org with R! Make sure to log in with your browser to DataMind.org using the same account to have a good course creation experience.")
   }else{stop("Wrong user name  or password for DataMind.org.")} 
 }
 
