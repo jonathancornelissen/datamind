@@ -34,7 +34,7 @@ datamind_login = function(email, password){
     .DATAMIND_ENV <<- new.env();
     .DATAMIND_ENV$auth_token <- auth_token;    
     .DATAMIND_ENV$email <- email;    
-    message("Logged in succesfully to DataMind.org with R! Make sure to log in with your browser to DataMind.org using the same account to have a good course creation experience.")
+    message("Logged in successfully to DataMind.org with R! Make sure to log in with your browser to DataMind.org as well using the same account.")
   }else{stop("Wrong user name  or password for DataMind.org.")} 
 }
 
@@ -81,11 +81,27 @@ upload_chapter_json = function(theJSON, open=TRUE){
   auth_token = .DATAMIND_ENV$auth_token;    
   url = paste0(base_url,"?auth_token=", auth_token);
   
-  x = httr:::POST(url=url, body = theJSON, add_headers("Content-Type" = "application/json"))   
-  course_id = content(x)$id;
-  message("Course succesfully uploaded to DataMind.org");
-  redirect_url = paste0(redirect_url,course_id);
-  if (open){ browseURL(redirect_url) }
+  x = try(httr:::POST(url = url, body = theJSON, add_headers(`Content-Type` = "application/json")))
+  if( class(x) != "response" ){
+    stop("Something went wrong. We didn't get a valid response from the DataMind server. Try again or contact info@datamind.org in case you keep experiencing this problem.")
+  } else { 
+    if(is.list(content(x)) ){ 
+      if("id" %in% names(content(x)) ){  
+        course_id = content(x)$id
+        course_title = content(x)$title
+        message(paste0("Course (id:",course_id,"):\n",course_title,"\nwas successfully uploaded to DataMind.org!"))
+        redirect_url = paste0(redirect_url, course_id)
+        if (open) {
+          browseURL(redirect_url)
+        } 
+      } 
+      if( "error" %in% names(content(x)) ){
+        message(paste0("Something went wrong:\n", content(x)$error ));
+      } 
+    } else {
+      message(paste0("Something went wrong. Please check whether your course was correctly uploaded to DataMind.org."));
+    } 
+  } 
 }
 
 upload_course_json = function(theJSON, open=TRUE){ 
@@ -173,7 +189,7 @@ upload_chapter_within_course = function(chapter,open=FALSE){
   message(paste("Start uploading chapter: ",chapter),"...");
   message("...uploading...")    
   invisible( capture.output( suppressMessages(upload_chapter(chapter,open=open)) ) );
-  message(paste("Succesfully uploaded chapter: ",chapter),"!");
+  message(paste("Successfully uploaded chapter: ",chapter),"!");
   message("###"); 
 }
 
