@@ -86,15 +86,19 @@ upload_chapter_json = function(theJSON, open=TRUE){
     stop("Something went wrong. We didn't get a valid response from the DataMind server. Try again or contact info@datamind.org in case you keep experiencing this problem.")
   } else { 
     if(is.list(content(x)) ){ 
-      if("id" %in% names(content(x)) ){  
-        course_id = content(x)$id
-        course_title = content(x)$title
+      if("course" %in% names(content(x)) ){  
+        course = content(x)$course
+        course_id = course$id
+        course_title = course$title
         message(paste0("Course (id:",course_id,"):\n",course_title,"\nwas successfully uploaded to DataMind.org!"))
         redirect_url = paste0(redirect_url, course_id)
         if (open) {
           browseURL(redirect_url)
         } 
       } 
+      if ("message" %in% names(content(x))) {
+        message(content(x)$message);
+      }
       if( "error" %in% names(content(x)) ){
         message(paste0("Something went wrong:\n", content(x)$error ));
       } 
