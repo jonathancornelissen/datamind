@@ -222,4 +222,22 @@ check_exercise_completeness = function(exercise){
 check_exercise_sct = function(exercise){ 
   
   return(exercise)  
-} 
+}
+
+pull_from_datacamp = function(course_title) {
+  base_url = paste0("http://www.datacamp.com/courses/get_export_links.json", "?course_title=", course_title);
+  auth_token = .DATAMIND_ENV$auth_token;    
+  url = paste0(URLencode(base_url), "&auth_token=", auth_token);
+  links = try(httr:::GET(url=url, add_headers(`Content-Type` = "application/json")))
+  # Do git shit
+  system("git commit -am 'Safety first'");
+  # Download course.yml
+  course_url = paste0(content(links)$course, "?auth_token=", auth_token);
+  download.file(course_url, "course.yml");
+  # Download chapter files
+  for (i in seq_along(content(links)$chapters)) {
+    chapter_url = paste0(content(links)$chapters[[i]], "?auth_token=", auth_token);
+    download.file(chapter_url, paste0("chapter", i, ".Rmd"))
+  }
+  system("git commit -am 'New version exported from DataCamp platform'");
+}
