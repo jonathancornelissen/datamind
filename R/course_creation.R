@@ -225,7 +225,7 @@ check_exercise_sct = function(exercise){
 }
 
 pull_from_datacamp = function(course_title) {
-  base_url = paste0("http://www.datacamp.com/courses/get_export_links.json", "?course_title=", course_title);
+  base_url = paste0("http://api.datacamp.com/courses/get_export_links", "?course_title=", course_title);
   auth_token = .DATAMIND_ENV$auth_token;    
   url = paste0(URLencode(base_url), "&auth_token=", auth_token);
   links = try(httr:::GET(url=url, add_headers(`Content-Type` = "application/json")))
